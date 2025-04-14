@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Feedback - Department of Computer Science and Technology</title>
+  <meta name="description" content="Share your feedback with the Department of Computer Science and Technology" />
+  <meta name="author" content="APC Ray Polytechnic" />
+  
+  <!-- Link to your CSS file -->
+  <link rel="stylesheet" href="styles.css">
+  <!-- Additional styles for the feedback form -->
+  <style>
+    .form-container {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 2rem;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 10px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    
+    .form-label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: white;
+    }
+    
+    .form-input,
+    .form-textarea {
+      width: 100%;
+      padding: 0.75rem;
+      border-radius: 0.5rem;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      font-size: 1rem;
+    }
+    
+    .form-textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+    
+    .form-input:focus,
+    .form-textarea:focus {
+      outline: none;
+      border-color: var(--secondary-color);
+      box-shadow: 0 0 10px rgba(66, 246, 228, 0.5);
+    }
+    select.form-input {
+  color: black; /* Changes the text color of the options to black */
+  background-color: white; /* Ensures the background is white for better visibility */
+}
+    .rating-container {
+      display: flex;
+      gap: 1rem;
+      margin-top: 0.5rem;
+    }
+    
+    .rating-item {
+      display: flex;
+      align-items: center;
+    }
+    
+    .rating-item input {
+      margin-right: 0.3rem;
+    }
+    
+    .submit-btn {
+      background: var(--secondary-color);
+      color: black;
+      font-weight: 600;
+      padding: 0.75rem 2rem;
+      border: none;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .submit-btn:hover {
+      background: #2cd7c5;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+    
+    .success-message {
+      display: none;
+      background: rgba(72, 187, 120, 0.2);
+      color: #48bb78;
+      padding: 1rem;
+      border-radius: 0.5rem;
+      margin-bottom: 1.5rem;
+      text-align: center;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header/Navigation -->
+  <header id="header" class="fixed w-full z-50 transition-all duration-300 py-4">
+    <nav class="container mx-auto flex justify-between items-center px-4">
+      <div class="flex items-center">
+        <img src="https://i.ibb.co/39WTjYdd/apc-photo.jpg" alt="Department Logo" class="h-12 md-h-14 mr-3" />
+        <span class="font-bold text-sm md-text-lg lg-text-xl">
+          Acharyya Prafulla Chandra Ray Polytechnic
+        </span>
+      </div>
+      
+      <!-- Desktop Navigation -->
+      <ul class="hidden md-flex space-x-6 items-center">
+        <li><a href="index.html#home" class="nav-link relative px-4 py-2 font-semibold tracking-wider transition-all duration-300">Home</a></li>
+        <li><a href="index.html#about" class="nav-link relative px-4 py-2 font-semibold tracking-wider transition-all duration-300">About</a></li>
+        <li><a href="index.html#magazine" class="nav-link relative px-4 py-2 font-semibold tracking-wider transition-all duration-300">Magazine</a></li>
+        <li><a href="index.html#faculty" class="nav-link relative px-4 py-2 font-semibold tracking-wider transition-all duration-300">Faculty</a></li>
+        <li><a href="index.html#footer" class="nav-link relative px-4 py-2 font-semibold tracking-wider transition-all duration-300">Contact</a></li>
+      </ul>
+      
+      <!-- Mobile Menu Button -->
+      <div class="mobile-menu-button flex flex-col space-y-1.5 cursor-pointer md-hidden z-50">
+        <div class="w-7 h-0.5 bg-white transition-all duration-300"></div>
+        <div class="w-7 h-0.5 bg-white transition-all duration-300"></div>
+        <div class="w-7 h-0.5 bg-white transition-all duration-300"></div>
+      </div>
+      
+      <!-- Mobile Navigation -->
+      <div class="mobile-nav fixed top-0 right-0 h-full w-3/4 bg-cyan z-40 transform transition-transform duration-300 ease-in-out shadow-2xl translate-x-full">
+        <div class="flex flex-col items-center justify-center h-full">
+          <ul class="flex flex-col space-y-6 items-center">
+            <li><a href="index.html#home" class="text-lg font-semibold tracking-wider py-2 px-4 rounded transition-all duration-300">Home</a></li>
+            <li><a href="index.html#about" class="text-lg font-semibold tracking-wider py-2 px-4 rounded transition-all duration-300">About</a></li>
+            <li><a href="index.html#magazine" class="text-lg font-semibold tracking-wider py-2 px-4 rounded transition-all duration-300">Magazine</a></li>
+            <li><a href="index.html#faculty" class="text-lg font-semibold tracking-wider py-2 px-4 rounded transition-all duration-300">Faculty</a></li>
+            <li><a href="index.html#footer" class="text-lg font-semibold tracking-wider py-2 px-4 rounded transition-all duration-300">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Feedback Form Section -->
+  <section class="relative py-32 min-h-screen flex items-center">
+    <video class="absolute top-0 left-0 w-full h-full object-cover z-0" autoplay loop muted playsinline>
+      <source src="https://media-hosting.imagekit.io/4b5897406ea9423f/AdobeStock_212116761_Video_HD_Preview.mov?Expires=1837864628&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=ltU7V5s1ulCNJ2U~Fi4HGo8wexb3oCF4kVK0BA1MeLJGG15r~c0RBHGYAVUrbFRzabiO5E6~c10fSTgLd0CbQwUqhdAvLlHFRPntTSAtEjxFyafjviFCzUUwB4z6Aruu7YCmN~5La6-oRhyxQefXs1P1GnQa4kz0iuR99sCqj9TwtiXhB9N8SVTOkAcJRHtt2sAH6S~eEyEokegSETD6FBDrJXWSwFgtrSdD2g9ZkR3U6eYPZdGRLshN1scrJOJvzIsPZYGpPza8fE81Rn5FAQmgdDpJoeCaJ-pm3GLRrnL1idc6hjV5pKR4tcW4oqzydHB-NPuMMe-D0CwS87cLmg__"type="video/mp4" />
+      Your browser does not support video.
+    </video>
+    
+    <!-- Overlay -->
+    <div class="absolute top-0 left-0 w-full h-full bg-black bg-opacity-80 z-0"></div>
+    
+    <div class="container mx-auto px-4 relative z-10">
+      <h2 class="text-3xl md-text-4xl font-bold text-center text-white mb-12 fade-hidden">
+        Share Your Feedback
+      </h2>
+      
+      <div class="form-container fade-hidden">
+        <div id="successMessage" class="success-message">
+          Thank you for your feedback! We appreciate your input.
+        </div>
+        
+        <form id="feedbackForm">
+          <div class="form-group">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" id="name" name="name" class="form-input" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" id="email" name="email" class="form-input" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="class" class="form-label">Class</label>
+            <select id="class" name="class" class="form-input" required>
+              <option value="" disabled selected>Select your class</option>
+              <option value="first-year">First Year</option>
+              <option value="second-year">Second Year</option>
+              <option value="third-year">Third Year</option>
+              <option value="others">Others</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label">How would you rate your experience?</label>
+            <div class="rating-container">
+              <div class="rating-item">
+                <input type="radio" id="rating1" name="rating" value="1" required>
+                <label for="rating1">Poor</label>
+              </div>
+              <div class="rating-item">
+                <input type="radio" id="rating2" name="rating" value="2">
+                <label for="rating2">Fair</label>
+              </div>
+              <div class="rating-item">
+                <input type="radio" id="rating3" name="rating" value="3">
+                <label for="rating3">Good</label>
+              </div>
+              <div class="rating-item">
+                <input type="radio" id="rating4" name="rating" value="4">
+                <label for="rating4">Very Good</label>
+              </div>
+              <div class="rating-item">
+                <input type="radio" id="rating5" name="rating" value="5">
+                <label for="rating5">Excellent</label>
+              </div>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="message" class="form-label">Your Message</label>
+            <textarea id="message" name="message" class="form-textarea" required></textarea>
+          </div>
+          
+          <div class="text-center">
+            <button type="submit" class="submit-btn">Submit Feedback</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer (simplified version) -->
+  <footer class="bg-gradient-to-r from-teal to-purple text-white pt-8 pb-4 relative overflow-hidden">
+    <div class="container mx-auto px-4 text-center">
+      <p class="text-sm">© 2025 Department of Computer Science and Technology - Acharyya Prafulla Chandra Ray Polytechnic</p>
+      <br><p>DESIGNER AND DEVELOPER OF THIS WEBSITE:</p>
+      <P>#ANUBHAB SAMANTA</P>
+      <P>#BIKRAMJIT BERA</P>
+    </div>
+  </footer>
+
+  <!-- JavaScript Links -->
+  <script src="script.js"></script>
+  <script>
+    // Feedback form submission handler
+    document.addEventListener('DOMContentLoaded', function() {
+      const feedbackForm = document.getElementById('feedbackForm');
+      const successMessage = document.getElementById('successMessage');
+      
+      if (feedbackForm) {
+        feedbackForm.addEventListener('submit', function(e) {
+          e.preventDefault();
+          
+          // In a real-world scenario, you would send the form data to a server
+          // Here we'll just show a success message
+          successMessage.style.display = 'block';
+          feedbackForm.reset();
+          
+          // Hide the success message after 5 seconds
+          setTimeout(function() {
+            successMessage.style.display = 'none';
+          }, 5000);
+        });
+      }
+    });
+  </script>
+</body>
+</html>

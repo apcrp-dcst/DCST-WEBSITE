@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Code Playground</title>
+  <style>
+    /* Basic Styles */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f7f7f7;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    body.dark-mode {
+      background-color: #1e1e1e;
+      color: white;
+    }
+
+    header {
+      background-color: #4CAF50;
+      color: white;
+      padding: 15px;
+      text-align: center;
+      font-size: 1.5rem;
+    }
+
+    .container {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+
+    .editor {
+      width: 48%;
+      height: 300px;
+      background-color: #fff;
+      border: 1px solid #ddd;
+      padding: 10px;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      resize: vertical;
+      overflow: auto;
+    }
+
+    body.dark-mode .editor {
+      background-color: #333;
+      color: white;
+      border-color: #666;
+    }
+
+    .editor textarea {
+      width: 100%;
+      height: 100%;
+      border: none;
+      resize: none;
+      font-family: "Courier New", Courier, monospace;
+      font-size: 14px;
+      line-height: 1.5;
+      padding: 10px;
+      background-color: #f7f7f7;
+    }
+
+    body.dark-mode .editor textarea {
+      background-color: #222;
+      color: white;
+    }
+
+    .editor button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .editor button:hover {
+      background-color: #45a049;
+    }
+
+    iframe {
+      width: 48%;
+      height: 300px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      background-color: #fff;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    #toggleDarkMode {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      padding: 5px 10px;
+      background: #444;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Code Playground</h1>
+    <p>Write HTML, CSS, and JavaScript and see the result live!</p>
+    <button id="toggleDarkMode">🌙 Dark Mode</button>
+  </header>
+
+  <div class="container">
+    <div class="editor">
+      <h3>HTML</h3>
+      <textarea id="htmlCode" placeholder="Write your HTML here..."></textarea>
+    </div>
+    <iframe id="output" title="Output"></iframe>
+  </div>
+
+  <div class="container">
+    <div class="editor">
+      <h3>CSS</h3>
+      <textarea id="cssCode" placeholder="Write your CSS here..."></textarea>
+    </div>
+    <div class="editor">
+      <h3>JavaScript</h3>
+      <textarea id="jsCode" placeholder="Write your JavaScript here..."></textarea>
+      <button id="runCodeBtn">Run Code</button>
+    </div>
+  </div>
+
+  <script>
+    function updateOutput() {
+      const html = document.getElementById("htmlCode").value;
+      const css = document.getElementById("cssCode").value;
+      const js = document.getElementById("jsCode").value;
+
+      localStorage.setItem("html", html);
+      localStorage.setItem("css", css);
+      localStorage.setItem("js", js);
+
+      const iframe = document.getElementById("output");
+      const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+      iframeDocument.open();
+      iframeDocument.close();
+      iframeDocument.body.innerHTML = html;
+
+      const style = iframeDocument.createElement('style');
+      style.textContent = css;
+      iframeDocument.head.appendChild(style);
+
+      const script = iframeDocument.createElement('script');
+      script.textContent = js;
+      iframeDocument.body.appendChild(script);
+    }
+
+    document.getElementById("runCodeBtn").addEventListener("click", updateOutput);
+
+    document.getElementById("htmlCode").addEventListener("input", updateOutput);
+    document.getElementById("cssCode").addEventListener("input", updateOutput);
+    document.getElementById("jsCode").addEventListener("input", updateOutput);
+
+    document.getElementById("toggleDarkMode").addEventListener("click", function() {
+      document.body.classList.toggle("dark-mode");
+      localStorage.setItem("darkMode", document.body.classList.contains("dark-mode"));
+    });
+
+    window.onload = function() {
+      document.getElementById("htmlCode").value = localStorage.getItem("html") || "";
+      document.getElementById("cssCode").value = localStorage.getItem("css") || "";
+      document.getElementById("jsCode").value = localStorage.getItem("js") || "";
+      if (localStorage.getItem("darkMode") === "true") {
+        document.body.classList.add("dark-mode");
+      }
+      updateOutput();
+    };
+  </script>
+</body>
+</html>
+
