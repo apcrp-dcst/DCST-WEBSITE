@@ -158,7 +158,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (command.includes('go to home')) {
         window.location.href = '#home';
       } else if (command.includes('open feedback')) {
-        window.location.href = 'feedback.html';
+        window.location.href = 'https://forms.gle/7MYLV3Z9vhr9tfCu5';
       } else if (command.includes('open code playground')) {
         window.location.href = 'playground.html';
       } else if (command.includes('open study materials')) {
